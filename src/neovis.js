@@ -110,6 +110,8 @@ export default class NeoVis {
 		const sizeCypher = labelConfig && labelConfig['sizeCypher'];
 		const communityKey = labelConfig && labelConfig['community'];
 
+		const shapeProp = labelConfig && labelConfig['shape'];
+
 		const title_properties = (
 			labelConfig && labelConfig.title_properties
 		) || Object.keys(neo4jNode.properties);
@@ -160,6 +162,13 @@ export default class NeoVis {
 			node.label = captionKey(neo4jNode);
 		} else {
 			node.label = neo4jNode.properties[captionKey] || label || '';
+		}
+
+		// node shape
+		if (typeof shapeProp === 'function') {
+			node.shape = shapeProp(neo4jNode);
+		} else {
+			node.shape = shapeProp || 'dot';
 		}
 
 		// community
