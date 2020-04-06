@@ -367,6 +367,7 @@ export default class NeoVis {
 							//     springConstant: 0.04,
 							//     springLength: 95
 							// },
+							barnesHut: this._config.barnesHut || {},
 							stabilization: {
 								iterations: 200,
 								fit: true
