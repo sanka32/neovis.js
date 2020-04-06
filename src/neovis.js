@@ -195,6 +195,10 @@ export default class NeoVis {
 				node.title += this.propertyToString(key, neo4jNode.properties[key]);
 			}
 		}
+
+		// add neo4j node source linkage for use in direct viz network manipulation
+		node.neo4jNode = neo4jNode;
+
 		return node;
 	}
 
@@ -245,6 +249,9 @@ export default class NeoVis {
 		} else {
 			edge.label = r.type;
 		}
+
+		// add neo4j relationship source linkage for use in direct viz network manipulation
+		edge.neo4jRel = r;
 
 		return edge;
 	}
@@ -435,7 +442,7 @@ export default class NeoVis {
 		this._network.setData([]);
 	}
 
-
+	
 	/**
 	 *
 	 * @param {string} eventType Event type to be handled
